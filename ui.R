@@ -1,5 +1,4 @@
 library(shiny)
-
 library(ggplot2)
 library(leaflet)
 
@@ -15,32 +14,17 @@ ui <- fluidPage(
   titlePanel("Title TBA"),
   
   br(),
-  
   # A two panel layout with sidebar and main panel
   sidebarLayout(
     # Sidebar
     sidebarPanel(
       radioButtons("grades.button", "Grade of Interest:",
-                   c("6th Grade" = "6", 
-                     "7th Grade" = "7", 
-                     "8th Grade" = "8", 
-                     "10th Grade" = "10")),
+                   c("6th Grade" = "sixth", 
+                     "7th Grade" = "seventh", 
+                     "8th Grade" = "eighth", 
+                     "10th Grade" = "tenth")),
       
       br(),
-      
-      radioButtons("subject.check", "Test Subject:",
-                   c("Reading" = "reading",
-                     "Math" = "math",
-                     "Writing" = "writing",
-                     "Science" = "science")),
-      
-      br(),
-      
-      selectInput("school.district", "School Districts:",
-                  districts),
-      
-      br(),
-      
       sliderInput("years.slider", "Years:",
                   min = 2010,
                   max = 2013,
@@ -52,14 +36,12 @@ ui <- fluidPage(
     # Main panel
     mainPanel(
       # Create tabs
+      leafletOutput("map"),
+      br(),
       tabsetPanel(type = "tabs",
-
-
-                  tabPanel("Map"),
-
                   tabPanel("Revenue vs. Test Score"),
                   tabPanel("Data Table"),
-                  tabPanel("Per District Test Proficiency Distribution", plotOutput("plot2"), br(), textOutput("plot2.description"))
+                  tabPanel("Aggregated Test Data")
       )
     )
   )
