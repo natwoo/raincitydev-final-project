@@ -46,8 +46,10 @@ ui <- fluidPage(
       # Create tabs
       tabsetPanel(type = "tabs",
                   tabPanel("Revenue vs. Test Score"),
-                  tabPanel("Data Table"),
-                  tabPanel("Per District Test Proficiency Distribution", plotOutput("plot2"), br(), textOutput("plot2.description"))
+                  tabPanel("Data Table", textOutput("intro"), dataTableOutput('table')),
+                  tabPanel("Per District Test Proficiency Distribution", plotOutput("plot2"), br(), textOutput("plot2.description")),
+                  tabPanel("About", textOutput('about'))
+                  
       )
     )
   )
