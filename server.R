@@ -25,7 +25,7 @@ school.district.shapefile <- readOGR("./data/shapefiles", "tl_2016_53_unsd", str
 View(final.data)
 server <- function(input, output) {
   #Filtering data for the plot. This allows the data to be manipulated
-  filtered <- reactive({
+  filtered1 <- reactive({
     data.final <- final.data %>%
       filter(year == input$years.slider) %>%
       filter(GradeTested == input$grades.button)
@@ -195,7 +195,7 @@ server <- function(input, output) {
   output$plot1 <- renderPlot({
     #Plot for reading test
     if (input$subject.check == "reading") {
-      p <- ggplot(data = filtered(), mapping = aes(x=total.revenue.per.pupil, y=ReadingPercentMetStandardExcludingNoScore)) +
+      p <- ggplot(data = filtered1(), mapping = aes(x=total.revenue.per.pupil, y=ReadingPercentMetStandardExcludingNoScore)) +
         geom_point(aes(color = "district")) +
         xlim(5000,35000) +
         xlab("Total Revenue Per Student") +
@@ -204,7 +204,7 @@ server <- function(input, output) {
       return(p)
     } #Plot for Math Test
     else if (input$subject.check == "math") {
-      p <- ggplot(data = filtered(), mapping = aes(x=total.revenue.per.pupil, y=MathPercentMetStandardExcludingNoScore)) +
+      p <- ggplot(data = filtered1(), mapping = aes(x=total.revenue.per.pupil, y=MathPercentMetStandardExcludingNoScore)) +
         geom_point(aes(color = "district")) +
         xlim(5000,35000) +
         xlab("Total Revenue Per Student") +
@@ -213,7 +213,7 @@ server <- function(input, output) {
       return(p)
     } #Plot for Writing Exam
     else if (input$subject.check == "writing") {
-      p <- ggplot(data = filtered(), mapping = aes(x=total.revenue.per.pupil, y=WritingPercentMetStandardExcludingNoScore)) +
+      p <- ggplot(data = filtered1(), mapping = aes(x=total.revenue.per.pupil, y=WritingPercentMetStandardExcludingNoScore)) +
         geom_point(aes(color = "district")) +
         xlim(5000,35000) +
         xlab("Total Revenue Per Student") +
@@ -222,7 +222,7 @@ server <- function(input, output) {
       return(p)   
     } #Plot for Science Test
     else if (input$subject.check == "science") {
-      p <- ggplot(data = filtered(), mapping = aes(x=total.revenue.per.pupil, y=SciencePercentMetStandardExcludingNoScore)) +
+      p <- ggplot(data = filtered1(), mapping = aes(x=total.revenue.per.pupil, y=SciencePercentMetStandardExcludingNoScore)) +
         geom_point(aes(color = "district")) +
         xlim(5000,35000) +
         xlab("Total Revenue Per Student") +
