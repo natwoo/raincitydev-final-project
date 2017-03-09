@@ -11,7 +11,7 @@ districts <- revenue.data$district %>%
 
 ui <- fluidPage(
   #Title
-  titlePanel("Title TBA"),
+  titlePanel("School Funding's Effect on Standardized Test Scores"),
   
   br(),
   # A two panel layout with sidebar and main panel
@@ -39,13 +39,17 @@ ui <- fluidPage(
       leafletOutput("map"),
       br(),
       tabsetPanel(type = "tabs",
-                  tabPanel("Revenue vs. Test Score"),
 
 
-                  tabPanel("Data Table", textOutput("intro"), dataTableOutput('table')),
+                  tabPanel("About", textOutput('about')),
+                 
                   tabPanel("Per District Test Proficiency Distribution", plotOutput("plot2"), br(), textOutput("plot2.description")),
-                  tabPanel("About", textOutput('about'))
+                
                   
+
+                  tabPanel("Revenue vs. Test Score", textOutput("text"), plotOutput("plot1"), textOutput("text1")),
+       
+                  tabPanel("Data Table", textOutput("intro"), dataTableOutput('table'))
 
       )
     )
