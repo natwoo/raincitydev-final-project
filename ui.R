@@ -1,6 +1,14 @@
 library(shiny)
+
 library(ggplot2)
 library(leaflet)
+
+
+revenue.data <- read.csv("data/washington_school_district_level_revenue.csv", stringsAsFactors = FALSE)
+districts <- revenue.data$district %>% 
+  as.list() %>% 
+  setNames(revenue.data$district)
+
 
 ui <- fluidPage(
   #Title
@@ -45,6 +53,10 @@ ui <- fluidPage(
     mainPanel(
       # Create tabs
       tabsetPanel(type = "tabs",
+
+
+                  tabPanel("Map"),
+
                   tabPanel("Revenue vs. Test Score"),
                   tabPanel("Data Table"),
                   tabPanel("Per District Test Proficiency Distribution", plotOutput("plot2"), br(), textOutput("plot2.description"))
